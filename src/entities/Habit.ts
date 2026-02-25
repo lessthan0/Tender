@@ -1,10 +1,10 @@
-export type Habit = 'health' | 'fitness' | 'mindfulness' | 'learning' | 'social';
-
+//export type Habit = 'health' | 'fitness' | 'mindfulness' | 'learning' | 'social';
+import { HabitCategory, StatBoost } from '../validators/habits.js';
 export type Habits = {
   id: number;
   petId: number;
   name: string;
-  category: Habit;
+  category: HabitCategory;
   targetFrequency: number;
-  statBoost: Enumerator;
+  statBoost: StatBoost;
 };

@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 export const NEGLECT_THRESHOLD_MS = 1000 * 60 * 60 * 24;
 
-function msg(res: express.Response, code: number, message: string): typeof res {
+export function msg(res: express.Response, code: number, message: string): typeof res {
   return res.status(code).json({ message });
 }
 
@@ -26,7 +26,7 @@ export function toPetResponse(p: Pet): PetResponse {
     stageEmoji,
   };
 }
-function parsePetId(req: express.Request): number | null {
+export function parsePetId(req: express.Request): number | null {
   const n = Number(req.params.petId);
   if (!Number.isInteger(n) || n <= 0) return null;
   return n;
@@ -65,26 +65,24 @@ export function createPet(req: Request, res: Response): void {
 }
 
 function computeStageFromSpec(pet: Pet): { stage: string; stageEmoji: string } {
-  // 1) Neglect first: cooked regardless of growth
   if (isCooked(pet)) {
     return { stage: 'Cooked', stageEmoji: '🍗' };
   }
-  // 2) Growth table based on total logs for this pet
+
   const totalLogs = getTotalLogsForPet(pet.id);
 
   if (totalLogs === 0) return { stage: 'Egg', stageEmoji: '🥚' };
   if (totalLogs >= 1 && totalLogs <= 4) return { stage: 'Hatching', stageEmoji: '🐣' };
   if (totalLogs >= 5 && totalLogs <= 14) return { stage: 'Growing', stageEmoji: '🐥' };
-  return { stage: 'Grown', stageEmoji: '🐓' }; // 15+
+  return { stage: 'Grown', stageEmoji: '🐓' };
 }
 function getTotalLogsForPet(petId: number): number {
-  // count logs where log.petId === petId
   let count = 0;
   for (const l of logs) if (l.petId === petId) count++;
   return count;
 }
 
-app.get('/pets/:petId', (req, res) => {
+export function getPetbyID(req: Request, res: Response): Response {
   const petId = parsePetId(req);
   if (petId === null) return msg(res, 404, 'Pet not found');
 
@@ -92,10 +90,9 @@ app.get('/pets/:petId', (req, res) => {
   if (!pet) return msg(res, 404, 'Pet not found');
 
   return res.status(200).json(toPetResponse(pet));
-});
+}
 
-// PUT /pets/:petId (name only)
-app.put('/pets/:petId', (req, res) => {
+export function putPetbyID(req: Request, res: Response): Response {
   const petId = parsePetId(req);
   if (petId === null) return msg(res, 404, 'Pet not found');
 
@@ -109,9 +106,9 @@ app.put('/pets/:petId', (req, res) => {
   pet.name = body.name;
 
   return res.status(200).json(toPetResponse(pet));
-});
+}
 
-app.delete('/pets/:petId', (req, res) => {
+export function deletePetbyID(req: Request, res: Response): Response {
   const petId = parsePetId(req);
   if (petId === null) return msg(res, 404, 'Pet not found');
 
@@ -125,4 +122,4 @@ app.delete('/pets/:petId', (req, res) => {
   for (let i = logs.length - 1; i >= 0; i--) if (logs[i].petId === petId) logs.splice(i, 1);
 
   return res.status(204).send();
-});
+}
