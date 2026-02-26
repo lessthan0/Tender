@@ -1,0 +1,13 @@
+meta {
+  name: Get Pet By Id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/pets/{{petId}}
+}
+
+assert {
+  res.status: eq 200
+}

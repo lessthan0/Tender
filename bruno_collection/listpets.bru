@@ -1,0 +1,13 @@
+meta {
+  name: List Pets
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/pets
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "createhabit.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://localhost:9812/pets/17/habits",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": "\"name\": \"Walk 10 minutes\",\n\"category\": \"fitness\",\n\"targetFrequency\": 3,\n\"statBoost\": \"energy\""
+        },
+        "response": {
+          "status": 400,
+          "statusText": "Bad Request",
+          "headers": {
+            "x-powered-by": "Express",
+            "content-security-policy": "default-src 'none'",
+            "x-content-type-options": "nosniff",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "1239",
+            "date": "Thu, 26 Feb 2026 05:30:24 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected token &#39;&quot;&#39;, &quot;&quot;\\&quot;name\\&quot;:&quot;... is not valid JSON<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at createStrictSyntaxError (/home/chodish/Astate/WebDev/Tender/node_modules/body-parser/lib/types/json.js:109:10)<br> &nbsp; &nbsp;at parse (/home/chodish/Astate/WebDev/Tender/node_modules/body-parser/lib/types/json.js:66:15)<br> &nbsp; &nbsp;at /home/chodish/Astate/WebDev/Tender/node_modules/body-parser/lib/read.js:162:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:214:14)<br> &nbsp; &nbsp;at invokeCallback (/home/chodish/Astate/WebDev/Tender/node_modules/body-parser/node_modules/raw-body/index.js:238:16)<br> &nbsp; &nbsp;at done (/home/chodish/Astate/WebDev/Tender/node_modules/body-parser/node_modules/raw-body/index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/chodish/Astate/WebDev/Tender/node_modules/body-parser/node_modules/raw-body/index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:508:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1701:12)</pre>\n</body>\n</html>\n",
+          "url": "http://localhost/pets/17/habits",
+          "responseTime": 20
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "Ipa8Cg5RlClsIAtSpgFkJ",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 201",
+            "rhsOperand": "201",
+            "operator": "eq",
+            "status": "fail",
+            "error": "expected 400 to equal 201"
+          }
+        ],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.115267725,
+        "name": "Create Habit",
+        "path": "createhabit",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 1,
+      "passedRequests": 0,
+      "failedRequests": 1,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "totalAssertions": 1,
+      "passedAssertions": 0,
+      "failedAssertions": 1,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
+    }
+  }
+]

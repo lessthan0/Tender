@@ -1,0 +1,26 @@
+meta {
+  name: Create pet
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/pets
+}
+
+headers {
+  content-type: application/json
+}
+
+body {
+  {
+    "name": "Fluffy",
+    "species": "blob"
+  }
+}
+
+tests {
+  test("status is 201", function() {
+    expect(res.status).to.equal(201);
+  });
+}

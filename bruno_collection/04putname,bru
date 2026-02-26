@@ -1,0 +1,18 @@
+meta {
+  name: Update Pet Name
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/pets/{{petId}}
+  body: json
+}
+
+body:json {
+  "name": "Chomp Jr"
+}
+
+assert {
+  res.status: eq 200
+}

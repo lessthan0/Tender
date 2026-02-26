@@ -1,0 +1,17 @@
+   
+meta {
+  name: List All
+  type: http
+  seq: 6
+}
+
+post {
+  url: 'http://localhost:9812/pets' 
+  body: 'bloobl' 'blook'
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+  res.body: isArray
+}

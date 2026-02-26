@@ -1,0 +1,13 @@
+meta {
+  name: List Habits (category=fitness)
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/pets/{{petId}}/habits?category=fitness
+}
+
+assert {
+  res.status: eq 200
+}

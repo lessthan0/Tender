@@ -1,0 +1,20 @@
+meta {
+  name: Create Log
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/pets/{{petId}}/logs
+  body: json
+}
+
+body:json {
+  "habitId": {{habitId}},
+  "date": "2026-02-15",
+  "note": "OLD GREG!"
+}
+
+assert {
+  res.status: eq 201
+}
